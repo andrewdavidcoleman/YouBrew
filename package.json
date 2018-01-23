@@ -1,6 +1,6 @@
 {
   "name": "youbrew",
-  "version": "1.0.0",
+  "version": "8.6.0",
   "description": "Youbrew is a MERN stack application used to communicate production and avialable inventory to sales representatives of craft breweries",
   "main": "server.js",
   "scripts": {
