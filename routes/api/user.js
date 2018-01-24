@@ -8,22 +8,56 @@ require('../../config/passport')(passport);
 var jwt = require('jsonwebtoken');
 var user = require("../../models/user");
 var sessionStorage = require('web-storage')().sessionStorage;
+var nodemailer = require('nodemailer');
+var emailsend = "";
+
+            var transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'youbrewapp@gmail.com',
+                    pass: 'ayiwotgxnabaldbf'
+                }
+            });
 
 router.post('/signup', function(req, res) {
-    if (!req.body.name || !req.body.password || !req.body.email) {
-        res.json({ success: false, msg: 'Please pass username and password.' });
+    if (!req.body.name || !req.body.password || !req.body.email || !req.body.name) {
+        res.status(401).send('Need name, email, and password');
     } else {
-        var newUser = new User({
+            emailsend = req.body.email;
+        var newUser = new user({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            isAdmin: req.body.isAdmin,
         });
+                    var mailOptions = {
+                from: 'youbrewapp@gmail.com',
+                to: emailsend,
+                subject: 'You Brew!',
+                html: '<img style="width:200px;height:200px;" src="cid:YouBrewLogoMin.png"/><br/><br/><h3>Hello '+req.body.name+', You are now registered with You Brew.  Contact your administrator for your password</h3> <h4>Log in <a href=https://youbrew.herokuapp.com/>HERE</a></h4><h6>This email was generated automatically, please do not reply.',
+                attachments: [{
+                filename: 'YouBrewLogoMin.png',
+                path: '../../dasboot/youbrew/client/public/assets/images/YouBrewLogoMin.png',
+                cid: 'YouBrewLogoMin.png' //same cid value as in the html img src
+    }]
+            };
+
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
         // save the user
         newUser.save(function(err) {
             if (err) {
-                return res.json({ success: false, msg: 'Username already exists.' });
+                return res.status(401).send('Username Already Exists');
             }
-            res.json({ success: true, msg: 'Successfully created new user.' });
+
+
+            return res.status(200).send('User created');
+
         });
     }
 });
@@ -35,9 +69,9 @@ router.post('/signin', function(req, res) {
         if (err) throw err;
 
         if (!user) {
-            res.status(401).send('Authentication failed. User not found.' );
+            res.status(401).send('Authentication failed. User not found.');
         } else {
-          var admin = user.isAdmin;
+            var admin = user.isAdmin;
             // check if password matches
             user.comparePassword(req.body.password, function(err, isMatch) {
                 if (isMatch && !err) {
@@ -56,7 +90,7 @@ router.post('/signin', function(req, res) {
                     });
 
                 } else {
-                    res.status(401).send('Authentication failed. Wrong password.' );
+                    res.status(401).send('Authentication failed. Wrong password.');
                 }
             });
         }

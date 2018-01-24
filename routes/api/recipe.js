@@ -18,4 +18,9 @@ router
   .route("/:id/:vol")
   .put(recipeController.updateVol);
 
+//  Matches with "/api/recipe/volbyname/:name/:vol"
+router
+  .route("/volbyname/:name/:vol")
+  .put(recipeController.updateRecipeVolByName);
+  
 module.exports = router;

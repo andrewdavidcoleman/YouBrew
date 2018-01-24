@@ -8,6 +8,7 @@ const userRoutes = require("./user");
 // Routes
 router.use("/batch", batchRoutes);
 router.use("/recipe", recipeRoutes);
+router.use("/recipe/volbyname", recipeRoutes);
 router.use("/customer", customerRoutes);
 router.use("/sale", saleRoutes);
 router.use("/user", userRoutes);

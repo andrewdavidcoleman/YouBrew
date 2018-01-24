@@ -6,26 +6,47 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 function seedBatch() {
-    const batchSeed = [
-        {
-            name: "Queen's Weiss",
-            style: "hefeweissen",
-            availVol: 20,
-            totalVol: 20,
-            date: Date.now(),
-            endDate: Date.now() + 6000,
-            isReady: false
-        },
-        {
-            name: "Souther BEL",
-            style: "Belgian single",
-            availVol: 40,
-            totalVol: 40,
-            date: Date.now(),
-            endDate: Date.now() + 604800000,
-            isReady: false
-        }
-    ];
+
+  const convertedDate = new Date(Date.now());
+
+  const batchSeed = [
+    {
+        name: "Queen's Weiss",
+        style: "hefeweissen",
+        availVol: 20,
+        totalVol: 20,
+        date: Date.now(),
+        endDate: Date.now() + 6000,
+        isReady: false
+    },
+    {
+        name: "Southern BEL",
+        style: "Belgian single",
+        availVol: 40,
+        totalVol: 40,
+        date: Date.now(),
+        endDate: Date.now() + 10000,
+        isReady: false
+    },
+    {
+        name: "Equilibrium",
+        style: "pale ale",
+        availVol: 20,
+        totalVol: 20,
+        date: Date.now(),
+        endDate: Date.now() + 6000,
+        isReady: false
+    },
+    {
+        name: "EveryDay",
+        style: "pilsner",
+        availVol: 20,
+        totalVol: 20,
+        date: Date.now(),
+        endDate: Date.now() + 6000,
+        isReady: false
+    }
+  ];
 
     db.Batch
         .remove({})

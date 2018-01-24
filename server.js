@@ -20,6 +20,7 @@ app.use(session({
 
 // Sets the PORT
 const PORT = process.env.PORT || 3001;
+const mongoURL = process.env.MONGODB_URI || "mongodb://localhost/youbrew";
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,46 +37,11 @@ app.use(passport.initialize());
 mongoose.Promise = Promise;
 // Connect to MongoDB
 mongoose.connect(
-    process.env.MONGOD_UR || "mongodb://localhost/youbrew",
+    mongoURL,
     {
         useMongoClient: true
     }
 );
-
-
-
-
-
-
-
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'youremail@gmail.com',
-    pass: 'yourpassword'
-  }
-});
-
-var mailOptions = {
-  from: 'youremail@gmail.com',
-  to: 'myfriend@yahoo.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-
-
-
-
 
 
 // Starts the server

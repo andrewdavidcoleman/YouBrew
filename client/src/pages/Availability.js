@@ -1,3 +1,4 @@
+import "./pages.css";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
@@ -7,8 +8,11 @@ import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
-import { ReactTableDefaults } from 'react-table'
+import { ReactTableDefaults } from 'react-table';
+import { Input, TextArea, FormBtn } from "../components/Form";
+var moment = require('moment');
 var sessionStorage = require('web-storage')().sessionStorage;
+
 
 // this is a react-table feature that allows us to override some defaults
 Object.assign(ReactTableDefaults, {
@@ -18,7 +22,7 @@ Object.assign(ReactTableDefaults, {
 });
 
 // ============react-modal styles=================
-const orderModalStyles = {
+const modalStyles = {
   overlay : {
     position          : 'fixed',
     top               : 0,
@@ -28,14 +32,15 @@ const orderModalStyles = {
     backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
-    top               : '40%',
+    width             : '500px',
+    top               : '50%',
     left              : '50%',
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	backgroundColor   : 'rgba(255,230,153,1.00)',
-	borderRadius      : '10px',
+  	backgroundColor   : 'rgba(255,255,255,1.00)',
+  	borderRadius      : '10px',
   }
 };
 
@@ -142,6 +147,23 @@ class Availability extends Component {
     num = -num;
     return num;
   }
+
+  batchReady(obj) {
+    API.updateRecipeVolByName(obj.name, obj.totalVol, obj._id)
+      .then(res => this.loadRecipes())
+      .then(API.deleteBatch(obj._id))
+        .then(res => this.loadBatches())
+      .catch(err => console.log(err))
+  }
+  // Calculates the percentage of time passed from
+  // two dates.
+  // getProgress = (startDate, endDate) => {
+  //   let totalTime = endDate - startDate;
+  //   let timePassed = Date.now() - startDate;
+  //   console.log("TIME PASSED>>>>>>>" + timePassed);
+  //   return (timePassed / totalTime) * 100 + "%";
+  // }
+
   // =============================================
 
   render() {
@@ -151,9 +173,9 @@ class Availability extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-10">
-            <h1>Inventory</h1>
-            <ReactTable className="-striped -highlight"
+          <Col size="md-14">
+            <h1><img id="logo" src="assets/images/inventorylogo.png" />Inventory</h1>
+            <ReactTable className="table-style -striped -highlight"
               data={recipes}
               columns={[
               {
@@ -179,7 +201,6 @@ class Availability extends Component {
               {
                 Header: "Options",
                 accessor: "options",
-
 	              maxWidth: 80,
                 Cell: row => (
                   <div>
@@ -191,9 +212,9 @@ class Availability extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10">
-            <h1>In process</h1>
-            <ReactTable className="-striped -highlight"
+          <Col size="md-14">
+            <h1><img id="logo" src="assets/images/inprocess.png" />In process</h1>
+            <ReactTable className="table-style -striped -highlight"
               data={batches}
               columns={[
               {
@@ -215,34 +236,46 @@ class Availability extends Component {
                 accessor: "progressBar",
 				        maxWidth: 200,
                 Cell: row => (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#dadada',
-              borderRadius: '2px'
-            }}
-          >
-            <div
-              style={{
-                width: `${row.value}%`,
-                height: '100%',
-                backgroundColor: row.value > 66 ? '#85cc00'
-                  : row.value > 33 ? '#ffbf00'
-                  : '#ff2e00',
-                borderRadius: '2px',
-                transition: 'all .2s ease-out'
-              }}
-            />
-          </div>
-        )
+                                <div
+                                  style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundColor: '#dadada',
+                                    borderRadius: '2px'
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      width: "75%",
+                                      height: '100%',
+                                      backgroundColor: '#85cc00',
+                                      borderRadius: '2px',
+                                      transition: 'all .2s ease-out'
+                                    }}
+                                  />
+                                </div>
+                              )
               },
               {
                 Header: "Ready by",
                 accessor: "endDate",
-                maxWidth: 125,
-
-
+                maxWidth: 150,
+                Cell: row => (moment(row.value).format('MMMM Do YYYY'))
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+	              maxWidth: 80,
+                Cell: row => (
+                  <div>
+                    <OrderBtn
+                      id="orderDone"
+                      onClick={() => this.batchReady(row.original)}
+                    >
+                      Ready
+                    </OrderBtn>
+                  </div>
+                ),
               }]}
             />
           </Col>
@@ -252,7 +285,7 @@ class Availability extends Component {
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          style={orderModalStyles}
+          style={modalStyles}
           contentLabel="order"
         >
           <h2>{this.state.name}</h2>
@@ -276,8 +309,16 @@ class Availability extends Component {
             <input type="hidden" id="id" name="id" value={this.state._id}/>
           </form>
 
-          <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.closeModal}>
+            Cancel
+          </FormBtn>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.handleFormSubmit}>
+            Submit
+          </FormBtn>
 
         </Modal>
 

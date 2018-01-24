@@ -42,6 +42,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  updateRecipeVolByName: function(req, res) {
+    db.Recipe
+      .findOneAndUpdate(
+        { name: decodeURI(req.params.name) },
+        { $inc: { availVol: req.params.vol }},
+        {upsert: true, returnNewDocument: true})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   remove: function(req, res) {
     db.Recipe
       .findById({ _id: req.params.id })

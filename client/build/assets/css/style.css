@@ -1,0 +1,320 @@
+body{
+	color: #30231d;
+	font-family: 'Viga', sans-serif;
+}
+
+h1 {
+	font-family: 'Carter One', cursive;
+}
+
+ul.nav.navbar-nav.navbar-right{
+	margin-top: 5px;
+}
+
+.navbar-toggle{
+	margin-top: 12px;
+}
+
+.floatR{
+  float: right;
+  position: relative;
+}
+.submit{
+  float: left;
+  position: relative;
+}
+.cancel{
+  float: right;
+  position:relative;
+}
+.administrator{
+	margin-right: 20px;
+}
+
+
+textarea.form-control {
+    margin-bottom: 20px;
+}
+
+div.containermyrecipes {
+	padding-top: 17px;
+	background-color: #FDF8E5;
+}
+
+li.list-group-item{
+	border-color: #31231D;
+}
+
+#emptytop{
+	height: 100px;
+}
+
+#top-of-site {
+	margin-top: 150px;
+}
+
+#availability{
+	margin-top: 40px;
+}
+
+#request{
+	max-width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#requestform{
+	margin-top: 50px;
+}
+
+#form-username{
+	background-color: transparent;
+	border-color: #30231d;
+	color: #30231d;
+}
+
+#form-password{
+	background-color: transparent;
+	border-color: #30231d;
+	color: #30231d;
+}
+
+.btn-warning{
+  margin-top: -8px;
+  margin-left: -20px;
+}
+
+#adminBtn{
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.containermyrecipes {
+	background: rgba(48,48,48,0.22);
+	max-width: 100%;
+	padding: 30px;
+	position: relative;
+	/*margin-left: 20%;*/
+	/*margin-right: 20%;*/
+	border-radius: 10px;
+	
+}
+
+
+
+#editrecipe{
+	margin-top: 20px;
+}
+
+#recipeHeader{
+	font-size: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+#login.btn{
+	background-color: #ffbd36;
+	border-color: #30231d;
+	color: #30231d;
+}
+
+#login-area{
+	margin-top: 150px;
+	background-color: rgba(236,197,158,0.71);
+	border-radius: 20px;
+	box-shadow: 0 0 30px black;
+
+}
+
+.welcome{
+	background-color: rgba(236,197,158,0.71);
+	border-radius: 20px;
+	box-shadow: 0 0 30px black;
+}
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #30231d;
+  text-align: center;
+  margin-bottom: 0px;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+}
+
+.text-muted {
+    color: #ffbd36;
+	padding-top: 7px;
+}
+
+
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 300%;
+    left: -100%;
+  }
+	#login-area{
+	margin-top: 150px;
+}
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('../images/beer2.jpg') center center / cover no-repeat;
+  }
+
+  .fullscreen-bg__video {
+    display: none;
+  }
+
+	#login-area{
+	margin-top: 0px;
+}
+	.administrator{
+	margin-right: 20px;
+}
+}
+
+@media (max-width: 992px) {
+	#login-area{
+	margin-top: 0px;
+}
+	.administrator{
+	margin-right: 20px;
+}
+}
+
+.editRec{
+  float: right;
+  position: absolute;
+  right: 150px;
+}
+
+.deleteRec{
+  float: right;
+  position: absolute;
+  right: 20px;
+}
+
+#logo{
+	height:40px;
+	width:40px;
+	padding: 0px;
+	margin: 10px;
+}
+
+/* navbar */
+
+.navbar-default{
+  background:transparent;
+  background-image:none;
+  box-shadow:none;
+}
+
+.navbar-default {
+    background-color: rgb(252,248,229);
+    border-color: transparent;
+}
+
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #770000;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: #30231d;
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color: #F0AD4E;
+}
+.navbar-default .navbar-nav > li > a:focus {
+    color: #770000;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #770000;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #770000;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #770000;
+    background-color: transparent;
+}
+/* Caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #30231d;
+    border-bottom-color: transparent;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #770000;
+    border-bottom-color: transparent;
+}
+.navbar-default .navbar-nav > .open > a .caret,
+.navbar-default .navbar-nav > .open > a:hover .caret,
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color:#770000;
+    border-bottom-color: #30231d;
+}
+/* Mobile version */
+.navbar-default .navbar-toggle {
+    border-color: #30231d;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #F0AD4E;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #30231d;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #30231d;
+    }
+	.navbar-default .navbar-toggle:hover {
+		color: #30231d;
+	}
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+          color: #30231d;
+    }
+}

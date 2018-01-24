@@ -40,6 +40,9 @@ export default {
     updateRecipeVol: function(id, vol) {
         return axios.put("api/recipe/" + id + "/" + vol);
     },
+    updateRecipeVolByName: function(name, vol) {
+        return axios.put("api/recipe/volbyname/" + name + "/" + vol );
+    },
     deleteRecipe: function(id) {
        return axios.delete("api/recipe/" + id);
     },
@@ -83,10 +86,6 @@ export default {
     newUser: function(userData) {
         return axios.post("/api/user/signup", userData).then(function(response) {
                 console.log(response);
-            }).then(res => {
-
-                push('/availability') /* dispatch an action that changes the browser history */
-
             })
             .catch(function(error) {
                 console.log(error);
