@@ -38,5 +38,9 @@
     "react-table": "^6.6.0",
     "react-toggle-switch": "^3.0.3",
     "web-storage": "^1.0.0"
+  },
+  "engines": {
+    "npm": ">=5.6.0",
+    "node": ">=8.6.0"
   }
 }
