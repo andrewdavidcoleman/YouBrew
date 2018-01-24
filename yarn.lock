@@ -1441,13 +1441,8 @@ node-pre-gyp@^0.6.36:
     tar-pack "^3.4.0"
 
 nodemailer@^4.2.0:
-<<<<<<< HEAD
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.4.2.tgz#f215fb88e8a1052f9f93083909e116d2b79fc8de"
-=======
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.2.0.tgz#310781d30130bc5b7bf756bb626ec27564c5079b"
->>>>>>> 3208f5dfa109409c188d91429a98f166032d4ba6
 
 nodemon@^1.11.0:
   version "1.12.1"
@@ -1749,13 +1744,8 @@ react-table@^6.6.0:
     classnames "^2.2.5"
 
 react-toggle-switch@^3.0.3:
-<<<<<<< HEAD
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-toggle-switch/-/react-toggle-switch-3.0.4.tgz#87e516e2bbc421ce4998b8eb28b29457db180724"
-=======
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/react-toggle-switch/-/react-toggle-switch-3.0.3.tgz#5c10a949aebdd9100bb0dea6390f4576143dd277"
->>>>>>> 3208f5dfa109409c188d91429a98f166032d4ba6
 
 readable-stream@2.2.7:
   version "2.2.7"
